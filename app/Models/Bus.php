@@ -11,18 +11,13 @@ final class Bus extends Vehicle
     public const PRICE_DAY = 6;
     public const PRICE_NIGHT = 4;
 
-    protected $collection = 'cars';
+    protected $table = 'cars';
 
-    private readonly string $category;
+    protected  string $category;
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-
-        $this->registrationPlate = $attributes['registrationPlate'];
-        $this->brand = $attributes['brand'];
-        $this->model = $attributes['model'];
-        $this->color = $attributes['color'];
         $this->category = self::CATEGORY;
     }
 

@@ -9,11 +9,11 @@ use App\Models\Vehicle;
 
 class VehicleFactory
 {
-    public static function build(array $attributes)
+    public static function build(array $attributes): Vehicle
     {
         return match ($attributes['category']) {
-            'A' => new Car($attributes),
-            'B' => new Bus($attributes),
+            'B' => new Car($attributes),
+            'D' => new Bus($attributes),
             'C' => new Truck($attributes),
             default => new Vehicle(),
         };

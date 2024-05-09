@@ -15,10 +15,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/home', function () {
-    Log::debug('hello-message',['test-context']);
-    return view('kurec');
+Route::post('/register-car', function () {
+    $data = request()->validate([
+        'make' => 'required',
+        'model' => 'required',
+        'year' => 'required|integer',
+        'category' => 'required',
+    ]);
+
+    $car = new \App\Models\Car($data);
+    $car->save();
+
+    return redirect('/');
+});
+
+Route::get('/healthcheck', function () {
+    return view('healthcheck');
+});
+
+Route::get('/discount-cards', function () {
+    return view('discount-cards', [
+        'discountCards' => \App\Models\DiscountCard::all(),
+    ]);
 });

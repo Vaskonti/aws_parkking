@@ -24,7 +24,7 @@ final class CarRegisterListener
      */
     public function handle(CarRegisterEvent $event): void
     {
-        Log::alert(Carbon::now()->format("d-m-Y H:i:ss")."   ".$event->car->registrationPlate. " was registered");
+        Log::alert(Carbon::now()->format("d-m-Y H:i:ss") . "   " . $event->car->registration_plate . " was registered");
     }
 
 }

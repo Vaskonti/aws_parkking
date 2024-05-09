@@ -29,7 +29,7 @@ final class CarPostRequest extends FormRequest
             'category' => 'string|exists:mysql.categories,category',
             'color' => 'string|required',
             'model' => 'string|required',
-            'registrationPlate' => 'string|required|max:10',
+            'registration_plate' => 'string|required|max:10',
         ];
     }
 

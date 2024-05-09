@@ -17,7 +17,7 @@ final class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::connection('mysql')->table('categories')->insert([
-            'category' => 'A',
+            'category' => 'D',
             'created_at' => now(),
         ]);
         DB::connection('mysql')->table('categories')->insert([

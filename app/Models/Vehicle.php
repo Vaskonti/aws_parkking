@@ -3,21 +3,21 @@
 namespace App\Models;
 
 
-class Vehicle extends
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+
+class Vehicle extends Model
 {
     use HasFactory;
 
-    protected string $registrationPlate;
+    protected string $registration_plate;
     protected string $brand;
     protected string $model;
     protected string $color;
-    protected string $entered;
+    protected string $category;
 
-    protected $collection = 'cars';
-    protected $dates = [
-        'entered',
-        'exited',
-    ];
+    protected $table = 'cars';
 
     //@review not something major, but in general the db columns and in that number mongo fields should be lowercase_separated_by_underscores
     protected $fillable = [
@@ -25,7 +25,8 @@ class Vehicle extends
         'brand',
         'model',
         'color',
-        'entered',
+        'time_entered',
+        'time_exited',
         'category',
         'card',
         'sumPaid',
@@ -34,8 +35,8 @@ class Vehicle extends
     public function newFromBuilder($attributes = [], $connection = null): self
     {
         $model = match ($attributes['category']) {
-            'A' => new Car($attributes),
-            'B' => new Bus($attributes),
+            'B' => new Car($attributes),
+            'D' => new Bus($attributes),
             'C' => new Truck($attributes),
             default => $this->newInstance(),
         };
@@ -47,7 +48,7 @@ class Vehicle extends
 
     public static function vehicleInsideParking(string $registrationPlate)
     {
-        return self::where('registrationPlate', '=', $registrationPlate)->whereNull('exited')->exists();
+        return self::where('registration_plate', $registrationPlate)->whereNull('time_exited')->exists();
     }
 
     protected function getPrices(): array

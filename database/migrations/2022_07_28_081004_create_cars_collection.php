@@ -14,9 +14,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mongodb')->create('cars', static function (Blueprint $collection): void {
-            $collection->index('registrationPlate');
-            $collection->addColumn('date','entered');
+        Schema::create('cars', function (Blueprint $table) {
+            $table->id();
+            $table->string('registration_plate');
+            $table->timestamp('time_entered');
+            $table->timestamp('time_exited')->nullable();
+            $table->string('category');
+            $table->string('color');
+            $table->string('brand');
+            $table->string('model');
+            $table->foreignId('card_id')->nullable();
+            $table->decimal('sum_paid', 8, 2)->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mongodb')->dropIfExists('cars');
+        Schema::dropIfExists('cars');
     }
 
 };

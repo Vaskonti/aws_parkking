@@ -49,8 +49,8 @@ class Parking
 
     public static function getFreeParkingSlots()
     {
-        $vehicles = Vehicle::whereNotNull('entered')
-            ->whereNull('exited')
+        $vehicles = Vehicle::query()
+            ->whereNull('time_exited')
             ->get();
         $cars = $vehicles->where('category', '=', 'A')->count() * Car::NEEDED_SLOTS;
         $buses = $vehicles->where('category', '=', 'B')->count() * Bus::NEEDED_SLOTS;

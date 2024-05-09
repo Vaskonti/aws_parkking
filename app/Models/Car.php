@@ -11,19 +11,13 @@ final class Car extends Vehicle
     public const PRICE_DAY = 3;
     public const PRICE_NIGHT = 2;
 
-    protected $collection = 'cars';
-    private readonly string $category;
+    protected $table = 'cars';
+    protected string $category;
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-
-        $this->registrationPlate = $attributes['registrationPlate'];
-        $this->brand = $attributes['brand'];
-        $this->model = $attributes['model'];
-        $this->color = $attributes['color'];
         $this->category = self::CATEGORY;
-
     }
 
     public function getNeededSlots(): int

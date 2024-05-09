@@ -24,7 +24,7 @@ class CarsController extends Controller
 {
     public function enterParking(CarPostRequest $request)
     {
-        if (Vehicle::vehicleInsideParking($request['registrationPlate'])) {
+        if (Vehicle::vehicleInsideParking($request['registration_plate'])) {
             return response([
                 'message' => 'Cannot register car! Car is already registered and has not left!',
             ], 422);
@@ -33,7 +33,8 @@ class CarsController extends Controller
         try {
             //@review there is a design pattern that fits perfectly and could be used here
             $car = VehicleFactory::build($request->toArray());
-            $car->card = $request['card'];
+            $car->card_id = $request['card_id'];
+            $car->time_entered = Carbon::now();
             $freeSlots = Parking::getFreeParkingSlots();
 
             if ($freeSlots <= 0 || $freeSlots - $car->getNeededSlots() < 0) {
@@ -46,8 +47,7 @@ class CarsController extends Controller
                 'message' => 'Vehicle entered parking lot successfully!',
             ], 200);
         } catch (Throwable $exception) {
-            //@review this is nice
-            Log::error($exception->getMessage());
+                Log::error($exception->getMessage());
 
             return \response([
                 'message' => $exception->getMessage(),
@@ -58,7 +58,7 @@ class CarsController extends Controller
     public function exitParking(ExitParkingRequest $request)
     {
         //@review if I enter 2 times with the same vehicle - here the first time will be returned and the vehicle will not be found!
-        $car = Vehicle::where('registrationPlate', '=', $request['registrationPlate'])->latest()->first();
+        $car = Vehicle::where('registration_plate', '=', $request['registration_plate'])->latest()->first();
 
         if (!$car->exists() || isset($car->exited)) {
             return \response([

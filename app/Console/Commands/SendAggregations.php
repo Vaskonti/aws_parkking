@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Mongo\Vehicle;
+use App\Models\Vehicle;
 use App\Notifications\AggregationNotification;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;

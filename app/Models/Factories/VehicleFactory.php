@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Mongo\Factories;
+namespace App\Models\Factories;
 
-use App\Models\Mongo\Bus;
-use App\Models\Mongo\Car;
-use App\Models\Mongo\Truck;
-use App\Models\Mongo\Vehicle;
+use App\Models\Bus;
+use App\Models\Car;
+use App\Models\Truck;
+use App\Models\Vehicle;
 
 class VehicleFactory
 {

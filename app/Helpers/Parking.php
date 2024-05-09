@@ -2,11 +2,11 @@
 
 namespace App\Helpers;
 
+use App\Models\Bus;
+use App\Models\Car;
 use App\Models\DiscountCard;
-use App\Models\Mongo\Bus;
-use App\Models\Mongo\Car;
-use App\Models\Mongo\Truck;
-use App\Models\Mongo\Vehicle;
+use App\Models\Truck;
+use App\Models\Vehicle;
 use Illuminate\Support\Carbon;
 
 class Parking

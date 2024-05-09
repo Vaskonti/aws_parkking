@@ -33,11 +33,8 @@ A **Parking** app for demonstration purposes.
   - VPC
   - ELB
   - ASG
-  - DocumentDB
   - RDS
-  - ElastiCache
   - CodeDeploy
-  - OpenSearch
   - S3
 - [**Terraform**](https://github.com/VasilHristovDev/mdp_project/tree/main/terraform) for automation of deployment
 

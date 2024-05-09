@@ -6,15 +6,14 @@ namespace App\Http\Controllers;
 
 //@review there are includes here that are not used;
 use App\Events\CarExitEvent;
-use App\Events\CarRegisterEvent;
 use App\Exceptions\InvalidDatePeriodException;
 use App\Exceptions\NoFreeSlotsException;
 use App\Helpers\Parking;
 use App\Http\Requests\CarPostRequest;
 use App\Http\Requests\ExitParkingRequest;
 use App\Http\Requests\GetMoneyAmountRequest;
-use App\Models\Mongo\Factories\VehicleFactory;
-use App\Models\Mongo\Vehicle;
+use App\Models\Factories\VehicleFactory;
+use App\Models\Vehicle;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -42,9 +41,6 @@ class CarsController extends Controller
             }
 
             $car->save();
-
-            //@review Practicing events is ok, but here there is no need for creating a car and adding its timestamp
-            CarRegisterEvent::dispatch($car);
 
             return \response([
                 'message' => 'Vehicle entered parking lot successfully!',

@@ -18,11 +18,6 @@ module "ccVPC" {
   private_subnet_cidrs = local.private_subnet_cidrs
 }
 
-module "elasticsearch" {
-  source = "./modules/elasticsearch"
-
-  cc_private_subnets = module.ccVPC.private_subnets
-}
 
 module "rds" {
   source = "./modules/rds"
@@ -35,29 +30,6 @@ module "rds" {
   rds_name          = "parking"
   rds_user_name     = "root"
   rds_user_password = "password"
-}
-
-module "docdb" {
-  source = "./modules/docdb"
-
-  cc_vpc_id               = module.ccVPC.vpc_id
-  cc_private_subnets      = module.ccVPC.private_subnets
-  cc_private_subnet_cidrs = local.private_subnet_cidrs
-
-  docdb_az            = local.availability_zones[0]
-  docdb_name          = "parking"
-  docdb_user_name     = "root"
-  docdb_user_password = "password"
-}
-
-module "elasticache" {
-  source = "./modules/elasticache"
-
-  cc_vpc_id               = module.ccVPC.vpc_id
-  cc_private_subnets      = module.ccVPC.private_subnets
-  cc_private_subnet_cidrs = local.private_subnet_cidrs
-
-  elasticache_name = "elasticache-instance"
 }
 
 module "elb" {
@@ -89,10 +61,6 @@ output "rds-endpoint" {
 
 output "rds-url" {
   value = module.rds.rds-url
-}
-
-output "docdb-endpoint" {
-  value = module.docdb.docdb-endpoint
 }
 
 output "load_balancer_dns_name" {

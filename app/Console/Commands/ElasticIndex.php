@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Mongo\Vehicle;
+use App\Models\Vehicle;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Console\Command;
 

@@ -1,0 +1,13 @@
+parameters:
+    # Level of error reporting, 0 being the least strict and 8 the most strict
+    level: 1
+
+    # List of directories to analyze
+    paths:
+        - app
+        - tests
+        - database
+        - config
+
+    ignoreErrors:
+        - '#^Call to an undefined static method#'

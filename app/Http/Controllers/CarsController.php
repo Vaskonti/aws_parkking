@@ -83,7 +83,7 @@ class CarsController extends Controller
         ], 200);
     }
 
-    public function getFreeSlots()
+    public function getFreeSlots(): Response
     {
         //@review ok
         $capacity = Parking::getFreeParkingSlots();

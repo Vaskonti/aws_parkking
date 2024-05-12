@@ -7,7 +7,7 @@ namespace App\Models;
 final class Bus extends Vehicle
 {
     public const NEEDED_SLOTS = 2;
-    public const CATEGORY = "B";
+    public const CATEGORY = "D";
     public const PRICE_DAY = 6;
     public const PRICE_NIGHT = 4;
 

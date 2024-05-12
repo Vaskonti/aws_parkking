@@ -2,7 +2,7 @@
 
 A **Parking** app for demonstration purposes.
 
-![Diagram](./public/mdp_project.png)
+![Diagram](./public/aws_parkking.png)
 
 ## Pre-requisites
 

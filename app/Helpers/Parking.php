@@ -47,14 +47,14 @@ class Parking
 
     }
 
-    public static function getFreeParkingSlots()
+    public static function getFreeParkingSlots(): int
     {
         $vehicles = Vehicle::query()
             ->whereNull('time_exited')
             ->get();
-        $cars = $vehicles->where('category', '=', 'A')->count() * Car::NEEDED_SLOTS;
-        $buses = $vehicles->where('category', '=', 'B')->count() * Bus::NEEDED_SLOTS;
-        $trucks = $vehicles->where('category', '=', 'C')->count() * Truck::NEEDED_SLOTS;
+        $cars = $vehicles->where('category', Car::CATEGORY)->count() * Car::NEEDED_SLOTS;
+        $buses = $vehicles->where('category', Bus::CATEGORY)->count() * Bus::NEEDED_SLOTS;
+        $trucks = $vehicles->where('category', Truck::CATEGORY)->count() * Truck::NEEDED_SLOTS;
 
         return Parking::$CAPACITY - $cars - $buses - $trucks;
     }

@@ -7,7 +7,6 @@ namespace App\Models;
 final class Car extends Vehicle
 {
     public const NEEDED_SLOTS = 1;
-    public const CATEGORY = "B";
     public const PRICE_DAY = 3;
     public const PRICE_NIGHT = 2;
 
